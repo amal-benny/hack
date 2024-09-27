@@ -3,6 +3,8 @@ import './App.css';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Navbar from './Components/NavBar';
+import ViewChildren from './Pages/ViewChildren';
+import ChildForm from './Pages/ChildForm';
 
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
           <Route path="/" element={<Navbar/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/view-children" element={<ViewChildren/>} />
+          <Route path="/add-form" element={<ChildForm/>} />
         </Routes>
     </div>
   );

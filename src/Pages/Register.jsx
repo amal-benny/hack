@@ -44,12 +44,11 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (validateForm()) {
       setIsSubmitted(true);
       console.log("Registration Successful", formData);
     } else {
-      setIsSubmitted(false);
+      alert(" Password must be at least 8 characters long. and should match")
     }
   };
 
