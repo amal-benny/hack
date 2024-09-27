@@ -1,4 +1,6 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
+import {auth} from "../firebaseAuth"
 
 
 const Register = () => {
@@ -42,15 +44,28 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (validateForm()) {
       setIsSubmitted(true);
-      console.log("Registration Successful", formData);
-    } else {
-      alert(" Password must be at least 8 characters long. and should match")
-    }
+      await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      alert('Registration successful!');
+      }
+      else{
+        console.log(errors)
+        alert("Validation Error")
+      }
   };
+
+  // const handleRegister = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+  //     alert('Registration successful!');
+  //   } catch (error) {
+  //     alert(error.message);
+  //   }
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-200">

@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
+import { auth } from '../firebaseAuth';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/authContext';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setUser } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return re.test(String(email).toLowerCase());
   };
 
-  const handleSubmit = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (!validateEmail(email)) {
-      alert("Please enter a valid email.");
-      return;
+    try {
+      const us = await signInWithEmailAndPassword(auth, email, password);
+      setUser(us.user.uid)
+      navigate("/")
+      alert('Login successful!');
+    } catch (error) {
+      alert(error.message);
     }
-    if (password.length < 8) {
-      alert("Password must be at least 8 characters long.");
-      return;
-    }
-    // You can add the login functionality here
-    console.log("Login successful", { email, password });
   };
 
   return (
@@ -29,7 +33,7 @@ const Login = () => {
         <h2 className="text-3xl font-extrabold mb-6 text-center text-indigo-700">
           Login to Your Account
         </h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           {/* Email Field */}
           <div className="mb-6">
             <label

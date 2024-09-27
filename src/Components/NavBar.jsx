@@ -1,8 +1,17 @@
 // src/components/Navbar.js
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../Context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 const [selected,setSelected] = useState("dash")
+const {setUser} = useContext(AuthContext)
+const navigate = useNavigate()
+
+const handleLogout = ()=>{
+  setUser(null)
+  navigate("/login")
+}
 
   return (
     <nav className="bg-white p-4 shadow-lg">
@@ -29,7 +38,7 @@ const [selected,setSelected] = useState("dash")
           </button>
         </div>
         <div className="float-end">
-        <button href="/" className="text-white font-bold px-5 py-2 rounded-md hover:bg-sky-700 bg-sky-600 ">
+        <button onClick={handleLogout} href="/" className="text-white font-bold px-5 py-2 rounded-md hover:bg-sky-700 bg-sky-600 ">
             Logout
           </button>
         </div>
