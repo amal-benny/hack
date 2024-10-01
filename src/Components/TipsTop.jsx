@@ -1,7 +1,125 @@
 import React, { useState } from 'react';
 
 const TipsTop = () => {
-  const [todo, setTodo] = useState(["Stay hydrated", "Take a break", "Exercise for 10 minutes"]);  // Initial list of tips
+
+    const getRandomValues = (array, count = 4) => {
+        // Check if the array has fewer than the required number of elements
+        if (array.length < count) {
+          return array;  // Return the full array if there are less than 4 elements
+        }
+      
+        // Shuffle the array using the Fisher-Yates algorithm
+        const shuffledArray = array.slice(); // Create a copy of the array to avoid modifying the original
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]; // Swap elements
+        }
+      
+        // Return the first 4 elements of the shuffled array
+        return shuffledArray.slice(0, count);
+      };
+  const [todo, setTodo] = useState(getRandomValues([
+    { id: 1, description: "Read a storybook together for 20 minutes." },
+    { id: 2, description: "Take a walk in the park." },
+    { id: 3, description: "Create an art project using colored paper." },
+    { id: 4, description: "Play a board game as a family." },
+    { id: 5, description: "Cook a simple meal together." },
+    { id: 6, description: "Have a movie night with popcorn." },
+    { id: 7, description: "Dance to your favorite songs." },
+    { id: 8, description: "Visit a local museum or gallery." },
+    { id: 9, description: "Plant flowers or vegetables in the garden." },
+    { id: 10, description: "Build a fort with blankets and pillows." },
+    { id: 11, description: "Do a simple science experiment at home." },
+    { id: 12, description: "Organize a family game night." },
+    { id: 13, description: "Make homemade pizza together." },
+    { id: 14, description: "Create a scrapbook of family memories." },
+    { id: 15, description: "Visit the library and pick out new books." },
+    { id: 16, description: "Have a picnic in the backyard." },
+    { id: 17, description: "Write letters to family members." },
+    { id: 18, description: "Have a themed dress-up day." },
+    { id: 19, description: "Practice yoga or meditation together." },
+    { id: 20, description: "Go on a nature scavenger hunt." },
+    { id: 21, description: "Create a family gratitude jar." },
+    { id: 22, description: "Do a puzzle together." },
+    { id: 23, description: "Make homemade ice cream." },
+    { id: 24, description: "Have a family talent show." },
+    { id: 25, description: "Go stargazing and identify constellations." },
+    { id: 26, description: "Play hide and seek in the house." },
+    { id: 27, description: "Take photos of each other and create a gallery." },
+    { id: 28, description: "Make a family vision board." },
+    { id: 29, description: "Try a new recipe together." },
+    { id: 30, description: "Have a themed costume party." },
+    { id: 31, description: "Create a family tree." },
+    { id: 32, description: "Read a chapter book together." },
+    { id: 33, description: "Do a craft using recycled materials." },
+    { id: 34, description: "Visit a petting zoo or farm." },
+    { id: 35, description: "Have a spa day at home." },
+    { id: 36, description: "Write a short story together." },
+    { id: 37, description: "Make friendship bracelets." },
+    { id: 38, description: "Have a family dance-off." },
+    { id: 39, description: "Create a time capsule." },
+    { id: 40, description: "Play charades as a family." },
+    { id: 41, description: "Explore a new hiking trail." },
+    { id: 42, description: "Have a garage sale together." },
+    { id: 43, description: "Build something with LEGO." },
+    { id: 44, description: "Do a scavenger hunt in your neighborhood." },
+    { id: 45, description: "Try out a new sport or activity." },
+    { id: 46, description: "Create a comic strip together." },
+    { id: 47, description: "Make homemade cards for friends." },
+    { id: 48, description: "Go to a local fair or festival." },
+    { id: 49, description: "Volunteer together for a community service." },
+    { id: 50, description: "Write down positive affirmations." },
+    { id: 51, description: "Create a family blog or vlog." },
+    { id: 52, description: "Do a science project together." },
+    { id: 53, description: "Try a new board game or card game." },
+    { id: 54, description: "Have a backyard campfire." },
+    { id: 55, description: "Go to the beach and build sandcastles." },
+    { id: 56, description: "Start a family book club." },
+    { id: 57, description: "Make a family recipe book." },
+    { id: 58, description: "Play an outdoor sport together." },
+    { id: 59, description: "Create a family playlist of favorite songs." },
+    { id: 60, description: "Write and illustrate a children’s book." },
+    { id: 61, description: "Make homemade crafts for a holiday." },
+    { id: 62, description: "Have a photo shoot at home." },
+    { id: 63, description: "Go on a local sightseeing tour." },
+    { id: 64, description: "Start a garden and plant seeds together." },
+    { id: 65, description: "Learn a new skill together (like knitting)." },
+    { id: 66, description: "Host a family potluck dinner." },
+    { id: 67, description: "Have a family discussion about goals." },
+    { id: 68, description: "Create an obstacle course in your backyard." },
+    { id: 69, description: "Write and send postcards to family." },
+    { id: 70, description: "Make a documentary about your family." },
+    { id: 71, description: "Participate in a local clean-up event." },
+    { id: 72, description: "Try out new dance moves together." },
+    { id: 73, description: "Plan a themed dinner night." },
+    { id: 74, description: "Do a random act of kindness together." },
+    { id: 75, description: "Create a bucket list for family activities." },
+    { id: 76, description: "Go to a farmers' market and try new foods." },
+    { id: 77, description: "Create a weather journal together." },
+    { id: 78, description: "Write down your family’s traditions." },
+    { id: 79, description: "Play a video game as a family." },
+    { id: 80, description: "Make a scrapbook of current events." },
+    { id: 81, description: "Create a family map with places you've been." },
+    { id: 82, description: "Learn a few words in a new language." },
+    { id: 83, description: "Create a DIY home project." },
+    { id: 84, description: "Take a family photo in matching outfits." },
+    { id: 85, description: "Have a family brainstorming session for future trips." },
+    { id: 86, description: "Plan a surprise for another family member." },
+    { id: 87, description: "Create a sensory bin for younger children." },
+    { id: 88, description: "Do a family workout session." },
+    { id: 89, description: "Play with bubbles outside." },
+    { id: 90, description: "Set up a lemonade stand together." },
+    { id: 91, description: "Make a time-lapse video of a family activity." },
+    { id: 92, description: "Participate in a family talent swap." },
+    { id: 93, description: "Create a family newsletter." },
+    { id: 94, description: "Organize a neighborhood block party." },
+    { id: 95, description: "Write down things that make you happy." },
+    { id: 96, description: "Take part in a local sports event." },
+    { id: 97, description: "Try a different cuisine at home." },
+    { id: 98, description: "Explore different cultures through food." },
+    { id: 99, description: "Plan a road trip itinerary." },
+    { id: 100, description: "Create a family bucket list for the year." }
+  ]));  // Initial list of tips
   const [tips,setTips] = useState([
     { id: 1, tip: "Set aside 15 minutes daily to read with your child." },
     { id: 2, tip: "Encourage your child to express their feelings." },
@@ -111,17 +229,20 @@ const TipsTop = () => {
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex].tip;
   };
+
+
   return (
     <div className='bg-white p-4 m-4 shadow-lg rounded-md'>
-      <h1 className='text-black text-[30px] font-bold text-left'>Daily Digest🔥</h1>
+      <h1 className='text-black text-[30px] font-bold text-center'>Daily Digest🔥</h1>
       <h1 className='text-black text-[20px] font-bold text-left mb-2'>Daily tip:</h1>
       <p className='text-black text-center text-[20px] font-bold text-left mb-2' >"{getRandomValue(tips)} "</p>
+      <h1 className='text-black text-[20px] font-bold text-left mb-2'>This weeks's tasks:</h1>
       {todo.map((tip, index) => (
         <div key={index} className='flex items-center flex-row mb-2'>
             <div>
 
           <input type='checkbox' id={`tip-${index}`} className='mr-2' />
-          <label htmlFor={`tip-${index}`} className='text-black text-[18px]'>{tip}</label>
+          <label htmlFor={`tip-${index}`} className='text-black text-[18px]'>{tip.description}</label>
             </div>
         </div>
       ))}

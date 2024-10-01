@@ -20,7 +20,7 @@ const Login = () => {
     try {
       const us = await signInWithEmailAndPassword(auth, email, password);
       setUser(us.user.uid)
-      navigate("/")
+      navigate("/dashboard")
       alert('Login successful!');
     } catch (error) {
       alert(error.message);
